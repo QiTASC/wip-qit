@@ -2,6 +2,7 @@ module Qit.Cells exposing (..)
 
 import Color
 import List
+import Task
 
 import Element exposing (..)
 import Element.Attributes exposing (..)
@@ -9,7 +10,8 @@ import Element.Events exposing (..)
 
 import Qit.Style exposing (Style(..))
 
--- TODO query select cell? or provide via message? or both (with generic SelectionChanged event)?
+-- TODO move content events
+-- TODO replicate content events
 -- TODO select row/col
 -- TODO multi-select
 -- TODO cleanup exposed API
@@ -28,6 +30,7 @@ type alias InternalConfig model style msg row col =
     , colHeader : col -> String
     , cell : model -> row -> col -> String
     , id : String
+    , onSelectionChange : Maybe msg
     }
 
 config: (Style -> style) -> (Message row col -> msg) -> (model -> List row) -> (model -> List col) -> (row -> String) -> (col -> String) -> (model -> row -> col -> String) -> Config model style msg row col
@@ -39,8 +42,15 @@ config style lift rows cols rowHeader colHeader cell =
             , rowHeader = rowHeader
             , colHeader = colHeader
             , cell = cell
-            , id = "cells" -- TOOD add possibility to update id
+            , id = "cells"
+            , onSelectionChange = Nothing
             })
+
+withSelectionChange message (Config config) =
+    Config { config | onSelectionChange = Just message}
+
+withId id (Config config) =
+    Config { config | id = id }
 
 type alias Model row col =
     { selected : Maybe (row, col)
@@ -51,10 +61,15 @@ init = Model Nothing
 
 type Message row col = SelectCell (row, col)
 
-update: Config model style msg row col -> Model row col -> Message row col -> Model row col
-update config model message =
+update: Config model style msg row col -> Model row col -> Message row col -> (Model row col, Cmd msg)
+update (Config config) model message =
     case message of
-        SelectCell cell -> { model | selected = Just cell }
+        SelectCell cell -> 
+            { model | selected = Just cell } !
+                ( case config.onSelectionChange of
+                    Just onSelectionChange -> [ Task.succeed onSelectionChange |> Task.perform identity ]
+                    Nothing -> []
+                )
 
 
 view: Config model style msg row col -> Model row col -> model -> Element style variation msg

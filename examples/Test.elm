@@ -12,7 +12,7 @@ import Date exposing (Date)
 
 appConfig = App.config QitStyle
 
-cellsConfig = Cells.config QitStyle CellsMessage .projects .months .name month cell
+cellsConfig = Cells.config QitStyle CellsMessage .projects .months .name month cell |> Cells.withSelectionChange SelectionChanged
 
 -- DATA MODEL
 type alias Project = 
@@ -38,7 +38,7 @@ type alias Model =
     , cells: Cells.Model Project Month
     }
 
-type Message = Nop | CellsMessage (Cells.Message Project Month)
+type Message = Nop | CellsMessage (Cells.Message Project Month) | SelectionChanged
 
 type QashStyles = None | QitStyle Style
 
@@ -52,8 +52,10 @@ update : Message -> Model -> (Model, Cmd Message)
 update message model =
     case message of
         CellsMessage inner -> 
-            let updatedCells = Cells.update cellsConfig model.cells inner
-            in { model | cells = updatedCells } ! [Cmd.none]
+            let (updatedCells, cmd) = Cells.update cellsConfig model.cells inner
+            in { model | cells = updatedCells } ! [cmd]
+        SelectionChanged ->
+            ( model, Cmd.none )
         _ -> ( model, Cmd.none )
 
 view : Model -> Html Message
@@ -62,7 +64,14 @@ view model =
         el None [width fill] (
             column None [width fill]
                 [ App.titleBar appConfig "Projects > Planning View"
-                , Cells.view cellsConfig model.cells model
+                , row None [width fill]
+                    [ el None [width fill] (
+                            Cells.view cellsConfig model.cells model
+                        )
+                    , el None [width (px 450)] (
+                            text (toString model.cells.selected)
+                        )
+                    ]
                 ]
         )
 

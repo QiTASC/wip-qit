@@ -13,10 +13,11 @@ type Style = None
            | Body
            | Label | FocussedLabel | FloatingLabel 
            | TextInput | FocussedTextInput 
-           | DatePicker | DatePickerYearHeader | DatePickerDateHeader | DatePickerMonthSelection | DatePickerContainer | DatePickerSelectedContent | DatePickerContent | FlatButton | DisabledFlatButton
+           | DatePicker | DatePickerYearHeader | DatePickerDateHeader | DatePickerMonthSelection | DatePickerContainer | DatePickerSelectedContent | DatePickerContent | DisabledFlatButton
            | Select | SelectArrow | SelectOption | SelectedOption
            | TitleBar | NavIcon
            | CellHeader | CellData | SelectedCellData
+           | FlatButton
 
 primaryColor = rgba 247 148 30 1
 
@@ -30,6 +31,45 @@ default style =
         , Font.size 24
         , Color.border (rgba 0 0 0 0.16)
         , Border.bottom 1
+        ]
+    , S.style (style FlatButton)
+        [ Color.text (primaryColor)
+        , Color.background (rgba 255 255 255 0)
+        , Font.typeface [Font.font "Avenir"]
+        , Border.rounded 2
+        , S.prop "margin" "8px"
+        , S.prop "overflow" "hidden"
+        , S.prop "transform" "translate3d(0,0,0)"
+        , S.hover
+            [ Color.background (rgba 247 148 30 0.12)
+            ]
+        , S.focus
+            [ Color.background (rgba 247 148 30 0.12)
+            ]
+        , S.pseudo "active"
+            [ Color.background (rgba 247 148 30 0.40)
+            ]
+        , S.pseudo ":after"
+            [ S.prop "content" "\" \""
+            , S.prop "display" "block"
+            , S.prop "position" "absolute"
+            , S.prop "top" "0"
+            , S.prop "left" "0"
+            , S.prop "width" "100%"
+            , S.prop "height" "100%"
+            , S.prop "pointer-events" "none"
+            , S.prop "background-image" "radial-gradient(circle, #000 50%, transparent 50.01%)"
+            , S.prop "background-repeat" "no-repeat"
+            , S.prop "background-position" "50%"
+            , S.prop "transform" "scale(2, 2)"
+            , S.prop "opacity" "0"
+            , S.prop "transition" "transform .5s, opacity 1s"
+            ]
+        , S.pseudo "active:after"
+            [ S.prop "transform" "scale(0,0)"
+            , S.prop "opacity" ".12"
+            , S.prop "transition" "0s"
+            ]
         ]
     , S.style (style CellHeader)
         [ Color.border (rgba 0 0 0 0.16)
@@ -167,14 +207,6 @@ default style =
         , S.hover
             [ S.prop "border-radius" "50%"
             , Color.background (rgba 247 148 30 0.67)
-            ]
-        ]
-    , S.style (style FlatButton)
-        [ Font.typeface [Font.font "Avenir"]
-        , Color.text primaryColor
-        , Color.background white
-        , S.hover
-            [ Color.background lightGray
             ]
         ]
     , S.style (style DisabledFlatButton)

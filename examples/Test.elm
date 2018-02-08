@@ -3,6 +3,7 @@ import Element exposing (..)
 import Element.Attributes exposing (..)
 import Style as S
 import Qit.App as App
+import Qit.Button as Button
 import Qit.Cells as Cells
 import Qit.Form as Form
 import Qit.Style as Style exposing (Style)
@@ -64,12 +65,16 @@ view model =
         el None [width fill] (
             column None [width fill]
                 [ App.titleBar appConfig "Projects > Planning View"
-                , row None [width fill]
+                , row None []
                     [ el None [width fill] (
                             Cells.view cellsConfig model.cells model
                         )
                     , el None [width (px 450)] (
-                            text (toString model.cells.selected)
+                            row None []
+                                [ text (toString model.cells.selected)
+                                , Button.flat QitStyle "Test" []
+                                , Button.flat QitStyle "Long Button for Testing" []
+                                ]
                         )
                     ]
                 ]

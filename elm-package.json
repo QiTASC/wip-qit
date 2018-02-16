@@ -1,7 +1,7 @@
 {
     "version": "1.0.0",
     "summary": "A collection of material design components",
-    "repository": "https://bitbucket.qvie.qitasc.com/projects/EL/repos/qit",
+    "repository": "https://github.com/user/project.git",
     "license": "BSD3",
     "source-directories": [
         "src", "examples"
@@ -14,7 +14,7 @@
         "Qit.Form",
         "Qit.Select",
         "Qit.Style",
-        "Qit.Textfield",
+        "Qit.TextField"
     ],
     "dependencies": {
         "elm-community/material-icons": "1.1.0 <= v < 2.0.0",

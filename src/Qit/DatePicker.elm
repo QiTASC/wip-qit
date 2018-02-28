@@ -23,6 +23,8 @@ import Qit.Style exposing (Style(..))
 -}
 type Message id = IgnoreInput String | Focus id (Maybe Date) | PreviousMonth | NextMonth | Dismiss | Select Date
 
+{-| Placeholder
+-}
 type alias State id = 
     Maybe (InternalState id) 
 

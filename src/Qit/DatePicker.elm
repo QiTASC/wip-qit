@@ -1,5 +1,8 @@
 module Qit.DatePicker exposing (Message, State, update, view)
 
+{-| DatePicker
+-}
+
 import Date exposing (Date)
 import Date.Extra.Core exposing (daysInMonth, monthToInt, nextMonth, prevMonth)
 import Date.Extra.Create exposing (dateFromFields)

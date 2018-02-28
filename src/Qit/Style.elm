@@ -1,5 +1,8 @@
 module Qit.Style exposing (Style(..), default)
 
+{-| Style
+-}
+
 import Color exposing (..)
 
 import Style as S

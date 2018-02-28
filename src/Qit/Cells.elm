@@ -1,5 +1,8 @@
 module Qit.Cells exposing (..)
 
+{-| Cells
+-}
+
 import Color
 import List
 import Task

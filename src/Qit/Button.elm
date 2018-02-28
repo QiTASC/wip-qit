@@ -1,5 +1,8 @@
 module Qit.Button exposing (..)
 
+{-| Button
+-}
+
 import Element exposing (..)
 import Element.Attributes exposing (..)
 

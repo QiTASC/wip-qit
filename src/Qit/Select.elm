@@ -1,5 +1,8 @@
 module Qit.Select exposing (Message, State, update, view)
 
+{-| Select
+-}
+
 import Element exposing (..)
 import Element.Attributes exposing (..)
 import Element.Events exposing (..)

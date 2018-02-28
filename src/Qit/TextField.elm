@@ -1,5 +1,8 @@
 module Qit.TextField exposing (Message, State, update, view)
 
+{-| TextField
+-}
+
 import Element exposing (..)
 import Element.Attributes exposing (..)
 import Element.Events exposing (..)

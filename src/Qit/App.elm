@@ -1,5 +1,8 @@
 module Qit.App exposing (..)
 
+{-| App
+-}
+
 import Color
 import Material.Icons.Action exposing (account_circle)
 import Material.Icons.Navigation exposing (apps, menu)

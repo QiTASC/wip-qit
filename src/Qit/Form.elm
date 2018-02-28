@@ -1,5 +1,8 @@
 module Qit.Form exposing (Config, Message, TransientState, config, dateField, selectField, textField, init, update, view)
 
+{-| Form
+-}
+
 import Array exposing (Array)
 import Color exposing (..)
 import Date exposing (Date)

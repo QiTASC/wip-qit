@@ -1,8 +1,7 @@
-module Qit.App exposing (..)
+module Qit.App exposing (Config, config, titleBar)
 
 {-| App
 -}
-
 import Color
 import Material.Icons.Action exposing (account_circle)
 import Material.Icons.Navigation exposing (apps, menu)
@@ -19,6 +18,8 @@ import Qit.Style exposing (Style(..))
 -- TODO configure notifications area
 -- TODO configure user area
 
+{-| Placeholder
+-}
 type Config style = 
     Config (InternalConfig style)
 
@@ -26,12 +27,15 @@ type alias InternalConfig style =
     { style : Style -> style
     }
 
+{-| Placeholder
+-}
 config: (Style -> style) -> Config style
 config style =
     Config ({ style = style
             })
 
-
+{-| Placeholder
+-}
 titleBar: Config style -> String -> Element style variation msg
 titleBar (Config config) title =
     el (config.style TitleBar) [width (percent 100), height (px 64), paddingXY 24 20]

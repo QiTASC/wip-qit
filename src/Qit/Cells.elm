@@ -1,6 +1,7 @@
-module Qit.Cells exposing (..)
+module Qit.Cells exposing (Config, config, withSelectionChange, withId, Model, init, update, view, Message)
 
 {-| Cells
+@docs Config, config, withSelectionChange, withId, Model, init, update, view, Message
 -}
 
 import Color
@@ -21,6 +22,8 @@ import Qit.Style exposing (Style(..))
 
 -- TODO inline edit -> is this really needed?
 
+{-| Placeholder
+-}
 type Config model style msg row col = 
     Config (InternalConfig model style msg row col)
 
@@ -36,6 +39,8 @@ type alias InternalConfig model style msg row col =
     , onSelectionChange : Maybe msg
     }
 
+{-| Placeholder
+-}
 config: (Style -> style) -> (Message row col -> msg) -> (model -> List row) -> (model -> List col) -> (row -> String) -> (col -> String) -> (model -> row -> col -> String) -> Config model style msg row col
 config style lift rows cols rowHeader colHeader cell =
     Config ({ style = style
@@ -49,21 +54,33 @@ config style lift rows cols rowHeader colHeader cell =
             , onSelectionChange = Nothing
             })
 
+{-| Placeholder
+-}
 withSelectionChange message (Config config) =
     Config { config | onSelectionChange = Just message}
 
+{-| Placeholder
+-}
 withId id (Config config) =
     Config { config | id = id }
 
+{-| Placeholder
+-}
 type alias Model row col =
     { selected : Maybe (row, col)
     }
 
+{-| Placeholder
+-}
 init : Model row col
 init = Model Nothing
 
+{-| Placeholder
+-}
 type Message row col = SelectCell (row, col)
 
+{-| Placeholder
+-}
 update: Config model style msg row col -> Model row col -> Message row col -> (Model row col, Cmd msg)
 update (Config config) model message =
     case message of
@@ -74,7 +91,8 @@ update (Config config) model message =
                     Nothing -> []
                 )
 
-
+{-| Placeholder
+-}
 view: Config model style msg row col -> Model row col -> model -> Element style variation msg
 view (Config config) cellModel model =
     el (config.style None) [width (percent 100)] (

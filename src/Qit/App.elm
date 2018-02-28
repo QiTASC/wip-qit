@@ -1,6 +1,7 @@
 module Qit.App exposing (Config, config, titleBar)
 
 {-| App
+@docs Config, config, titleBar
 -}
 import Color
 import Material.Icons.Action exposing (account_circle)

@@ -1,6 +1,7 @@
 module Qit.Button exposing (flat)
 
 {-| Button
+@docs flat
 -}
 
 import Element exposing (..)

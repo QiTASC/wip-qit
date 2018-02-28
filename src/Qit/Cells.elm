@@ -56,11 +56,13 @@ config style lift rows cols rowHeader colHeader cell =
 
 {-| Placeholder
 -}
+withSelectionChange: Message -> Config -> Config
 withSelectionChange message (Config config) =
     Config { config | onSelectionChange = Just message}
 
 {-| Placeholder
 -}
+withId: String -> Config -> Config
 withId id (Config config) =
     Config { config | id = id }
 

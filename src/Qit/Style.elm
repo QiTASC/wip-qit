@@ -1,6 +1,7 @@
 module Qit.Style exposing (Style(..), default)
 
 {-| Style
+@docs Style, default
 -}
 
 import Color exposing (..)

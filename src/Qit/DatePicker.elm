@@ -1,6 +1,7 @@
 module Qit.DatePicker exposing (Message, State, update, view)
 
 {-| DatePicker
+@docs Message, State, update, view
 -}
 
 import Date exposing (Date)

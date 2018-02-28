@@ -1,6 +1,7 @@
 module Qit.Select exposing (Message, State, update, view)
 
 {-| Select
+@docs Message, State, update, view
 -}
 
 import Element exposing (..)

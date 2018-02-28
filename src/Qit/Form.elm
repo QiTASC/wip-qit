@@ -1,6 +1,7 @@
 module Qit.Form exposing (Config, Message, TransientState, config, dateField, selectField, textField, init, update, view)
 
 {-| Form
+@docs Config, Message, TransientState, config, dateField, selectField, textField, init, update, view
 -}
 
 import Array exposing (Array)

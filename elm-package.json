@@ -1,7 +1,7 @@
 {
     "version": "1.0.0",
     "summary": "A collection of material design components",
-    "repository": "https://github.com/user/project.git",
+    "repository": "https://github.com/QiTASC/wip-qit.git",
     "license": "Proprietary",
     "source-directories": [
         "src", "examples"

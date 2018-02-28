@@ -1,6 +1,6 @@
 {
     "version": "1.0.0",
-    "summary": "A collection of material design components",
+    "summary": "An experimental library of material design components, not for production use.",
     "repository": "https://github.com/QiTASC/wip-qit.git",
     "license": "Proprietary",
     "source-directories": [

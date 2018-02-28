@@ -17,12 +17,17 @@ import Qit.Style exposing (Style(..))
 -- TODO if need to scroll, then show scrollbars all the time
 
 
-
+{-| Placeholder
+-}
 type Message id = IgnoreInput String | Focus id | Dismiss
 
+{-| Placeholder
+-}
 type alias State id = 
     Maybe id 
 
+{-| Placeholder
+-}
 update : State id -> Message id -> State id
 update state message =
     case message of
@@ -30,6 +35,8 @@ update state message =
         Dismiss -> Nothing
         _ -> state
 
+{-| Placeholder
+-}
 view : (Message id -> msg) -> (Style -> style) -> State id -> id -> String -> Maybe (String, String) -> List (String, String) -> ((String, String) -> msg) -> Element style variation msg
 view lift style stateQ id label valueQ choices message =
     let value = valueQ |> Maybe.map (\(choice, value) -> value) |> Maybe.withDefault ""

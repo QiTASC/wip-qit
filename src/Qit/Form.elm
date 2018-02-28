@@ -23,7 +23,8 @@ import Qit.Style exposing (Style(..))
 -- TODO safari date picker has no separation between input and inline picker
 
 
-
+{-| Placeholder
+-}
 type Config id model style msg = 
     Config (InternalConfig id model style msg)
 
@@ -53,6 +54,8 @@ type Field id model
                   , update: model -> (String, String) -> model
                   }
 
+{-| Placeholder
+-}
 type TransientState id
     = TransientState (InternalTransientState id)
 
@@ -63,10 +66,13 @@ type alias InternalTransientState id =
     , text: TF.State id
     }
 
+{-| Placeholder
+-}
 type Message id = CurrentDate Date | TextInput Int String | TextMessage (TF.Message id) | DateInput Int Date | DateMessage (DP.Message id) | SelectInput Int (String, String) | SelectMessage (SL.Message id)
 
 
-
+{-| Placeholder
+-}
 config: (Message id -> msg) -> (Style -> style) -> (model -> TransientState id) -> (model -> TransientState id -> model) -> Config id model style msg
 config lift style state updateState =
     Config ({ lift = lift
@@ -76,17 +82,22 @@ config lift style state updateState =
             , fields = Array.empty 
             })
 
+{-| Placeholder
+-}
 dateField : id -> String -> (model -> Maybe Date) -> (model -> Date -> model) -> Config id model style msg -> Config id model style msg
 dateField id label value update config =
     DateField { id = id, label = label, value = value, update = update }
         |> addTo config
 
+{-| Placeholder
+-}
 selectField : id -> String -> (model -> Maybe (String, String)) -> (model -> List (String, String)) -> (model -> (String, String) -> model) -> Config id model style msg -> Config id model style msg
 selectField id label value choices update config =
     SelectField { id = id, label = label, value = value, choices = choices, update = update }
         |> addTo config
 
-
+{-| Placeholder
+-}
 textField : id -> String -> (model -> String) -> (model -> String -> model) -> Config id model style msg -> Config id model style msg
 textField id label value update config = 
     TextField { id = id, label = label, value = value, update = update }
@@ -99,7 +110,8 @@ addTo config field =
             Config ({ cfg | fields = Array.push field cfg.fields })
 
 
-
+{-| Placeholder
+-}
 init : Config id model style msg -> (TransientState id, Cmd msg)
 init config = 
     let cfg = case config of
@@ -110,7 +122,8 @@ init config =
         )
 
 
-
+{-| Placeholder
+-}
 update: Config id model style msg -> Message id -> model -> model
 update config message model =
     let cfg = case config of
@@ -164,7 +177,8 @@ internalUpdate cfg state message model =
         -- _ -> model
 
 
-
+{-| Placeholder
+-}
 view: Config id model style msg -> model -> Element style variation msg
 view config model =
     let cfg = case config of

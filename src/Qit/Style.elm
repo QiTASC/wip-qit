@@ -13,6 +13,8 @@ import Style.Font as Font
 import Style.Shadow as Shadow
 import Style.Transition as Transition
 
+{-| Placeholder
+-}
 type Style = None 
            | Body
            | Label | FocussedLabel | FloatingLabel 
@@ -25,6 +27,8 @@ type Style = None
 
 primaryColor = rgba 247 148 30 1
 
+{-| Placeholder
+-}
 default : (Style -> style) -> List (S.Style style variation)
 default style =
     [ S.style (style None) []

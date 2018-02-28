@@ -11,16 +11,24 @@ import Element.Input as Input
 
 import Qit.Style exposing (Style(..))
 
+{-| Placeholder
+-}
 type Message id = Focus id | Blur id
 
+{-| Placeholder
+-}
 type alias State id = Maybe id
 
+{-| Placeholder
+-}
 update : State id -> Message id -> State id
 update state message =
     case message of
         Focus id -> Just id
         Blur id -> if state == Just id then Nothing else state
 
+{-| Placeholder
+-}
 view : (Message id -> msg) -> (Style -> style) -> State id -> id -> String -> String -> (String -> msg) -> Element style variation msg
 view lift style state id label value message =
     let focussed = state == Just id

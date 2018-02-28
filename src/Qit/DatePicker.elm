@@ -19,6 +19,8 @@ import Qit.Style exposing (Style(..))
 -- TODO year selection
 -- TODO align day selection with day of week
 
+{-| Placeholder
+-}
 type Message id = IgnoreInput String | Focus id (Maybe Date) | PreviousMonth | NextMonth | Dismiss | Select Date
 
 type alias State id = 
@@ -31,8 +33,8 @@ type alias InternalState id =
     , selectedDate: Maybe Date
     }
 
-
-
+{-| Placeholder
+-}
 update : Date -> State id -> Message id -> State id
 update now state message =
     case message of
@@ -58,6 +60,8 @@ update now state message =
             
         _ -> state
 
+{-| Placeholder
+-}
 view : (Message id -> msg) -> (Style -> style) -> Date -> State id -> id -> String -> Maybe Date -> (Date -> msg) -> Element style variation msg
 view lift style now stateQ id label currentValue message =
     let value = formatDate currentValue

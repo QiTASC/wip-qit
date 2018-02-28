@@ -44,7 +44,7 @@ type Message = Nop | CellsMessage (Cells.Message Project Month) | SelectionChang
 type QashStyles = None | QitStyle Style
 
 init : (Model, Cmd Message)
-init = { projects = [ Project "Valencia 1.0", Project "Valencia 1.5", Project "Valencia 2.0"]
+init = { projects = [ Project "Project 1.0", Project "Project 1.5", Project "Project 2.0"]
        , months = [Month 2018 1, Month 2018 2, Month 2018 3, Month 2018 4, Month 2018 5, Month 2018 6]
        , cells = Cells.init
        } ! [Cmd.none]
